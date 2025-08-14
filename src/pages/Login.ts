@@ -5,7 +5,13 @@ import { log } from 'console';
 export default class Login{
     constructor(private readonly page: Page){}
 
-
+//assert 
+/**
+ * http or https protocol
+ * page title
+ * page url
+ * url domain 
+ */
     async getUrl(){
         try {
         await this.page.goto("https://www.saucedemo.com/");
