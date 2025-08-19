@@ -10,11 +10,17 @@ test.beforeEach(async ({ login }) => {
 
 test('Get shopping card', async ({ dashboard }) => {
  
-//const dashboard = new Dashboard(page);
-await dashboard.addToCart();
-//dashbord page
+// const dashboard = new Dashboard(page);
+  await dashboard.addToCart();
+  
+  // Assert that cart has 1 item
+  const cartCount = await dashboard.getCartCount();
+  expect(cartCount).toBe(1);
 
-
-  //card page
-  await dashboard.page.locator("//button[text()='REMOVE']").click();
+  // Remove item from cart
+  await dashboard.removeFromCart();
+  
+  // Assert that cart is empty after removal
+  const cartCountAfterRemoval = await dashboard.getCartCount();
+  expect(cartCountAfterRemoval).toBe(0);
 });
